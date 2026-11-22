@@ -1,6 +1,6 @@
-name: home_library_lab1
-description: Консольний застосунок для обробки каталогу домашньої бібліотеки.
-version: 1.0.0
+name: home_library
+description: Об’єктно-орієнтована модель каталогу домашньої бібліотеки.
+version: 2.0.0
 
 environment:
   sdk: ^3.13.4
