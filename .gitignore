@@ -1,0 +1,8 @@
+# https://dart.dev/tools/private-files
+# Created by `dart pub`
+.dart_tool/
+build/
+
+# Microsoft Word lock files and the superseded first report draft.
+~$*.docx
+docs/Dart-HomeLibrary-Свідерський_Олександр_Геннадійович-лб1.docx
