@@ -170,16 +170,16 @@ final class Book implements Identifiable {
       errors.add('автор має містити щонайменше ім’я та прізвище');
     }
 
-    switch (status) {
-      case Finished(:final date) when date.isAfter(currentDate):
-        errors.add('дата прочитання не може бути в майбутньому');
-      case Finished(:final date)
-          when yearIsValid && date.isBefore(DateTime(publicationYear)):
-        errors.add('дата прочитання не може передувати року видання');
-      case Reading(:final currentPage) when currentPage > pageCount:
-        errors.add('поточна сторінка $currentPage більша за обсяг книги');
-      case _:
-        break;
+    if (status case DatedStatus(:final date, :final label)) {
+      if (date.isAfter(currentDate)) {
+        errors.add('дата стану «$label» не може бути в майбутньому');
+      } else if (yearIsValid && date.isBefore(DateTime(publicationYear))) {
+        errors.add('дата стану «$label» не може передувати року видання');
+      }
+    }
+    if (status case PageProgress(:final currentPage)
+        when currentPage > pageCount) {
+      errors.add('поточна сторінка $currentPage більша за обсяг книги');
     }
 
     return List.unmodifiable(errors);

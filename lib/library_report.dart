@@ -41,8 +41,10 @@ String describeStatus(
   Finished(:final date) when date.year == referenceDate.year =>
     'прочитано цього року (${date.toIsoDateString()})',
   final Finished finished =>
-    '${finished.label} ${finished.date.toIsoDateString()}, '
-        '${finished.daysSince(referenceDate)} дн. тому',
+    '${finished.dateLabel}, ${finished.daysSince(referenceDate)} дн. тому',
+  final Abandoned abandoned =>
+    '${abandoned.progressLabel(pageCount)}, '
+        '${abandoned.date.toIsoDateString()}',
 };
 
 /// Формує текстовий звіт про бібліотеку за вхідними рядками [lines].
