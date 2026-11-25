@@ -20,17 +20,27 @@ typedef BookComparator = int Function(Book left, Book right);
 ///
 /// Клас незмінний: усі поля `final`, а конструктор константний. Дві книги з
 /// однаковими значеннями полів вважаються рівними.
-final class Book implements Identifiable {
-  /// Створює книгу із заданими значеннями полів.
-  const Book({
-    required this.author,
-    required this.title,
-    required this.publicationYear,
-    required this.pageCount,
-    required this.genre,
-    required this.status,
-  }) : assert(author != ''),
-       assert(title != '');
+final class const Book({
+  /// Автор книги.
+  required final String author,
+
+  /// Назва книги.
+  required final String title,
+
+  /// Рік видання.
+  required final int publicationYear,
+
+  /// Кількість сторінок.
+  required final int pageCount,
+
+  /// Жанр.
+  required final Genre genre,
+
+  /// Стан читання.
+  required final ReadingStatus status,
+}) implements Identifiable {
+  /// Перевіряє інваріанти книги, які гарантує розбір вхідного рядка.
+  this : assert(author != ''), assert(title != '');
 
   /// Розбирає книгу з рядка [line] у форматі
   /// `автор;назва;рік;сторінки;жанр;стан`.
@@ -114,24 +124,6 @@ final class Book implements Identifiable {
     final byTitle = left.title.compareTo(right.title);
     return byTitle != 0 ? byTitle : left.author.compareTo(right.author);
   }
-
-  /// Автор книги.
-  final String author;
-
-  /// Назва книги.
-  final String title;
-
-  /// Рік видання.
-  final int publicationYear;
-
-  /// Кількість сторінок.
-  final int pageCount;
-
-  /// Жанр.
-  final Genre genre;
-
-  /// Стан читання.
-  final ReadingStatus status;
 
   @override
   String get id =>
