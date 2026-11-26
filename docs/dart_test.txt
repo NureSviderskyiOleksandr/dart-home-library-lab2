@@ -1,2 +1,2 @@
-00:00 +0: loading test\home_library_lab1_test.dart
-00:00 +11: All tests passed!
+$ dart test
++29: All tests passed!
